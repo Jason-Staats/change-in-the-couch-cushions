@@ -16,4 +16,5 @@ model2 <- lm(avg_spending ~ avg_no_leisure, data = df)
 cat("Model 2: No leisure-time activity vs Healthcare Spending\n")
 summary(model2)
 
+# Pearson correlation 
 cor.test(df$avg_muscle, df$avg_no_leisure)

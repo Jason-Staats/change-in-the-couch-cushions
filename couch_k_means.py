@@ -5,7 +5,7 @@ from sklearn.metrics import silhouette_score
 from collections import Counter
 import seaborn as sns
 import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap  # <-- missing import
+from matplotlib.colors import LinearSegmentedColormap
 
 # Load pre-aggregated data from SQL export
 cluster_df = pd.read_csv(

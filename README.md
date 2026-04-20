@@ -4,6 +4,10 @@ A state-level analysis of physical activity trends and per capita healthcare cos
 
 ---
 
+🔗 **Interactive Dashboard:** [View here](https://app.powerbi.com/view?r=eyJrIjoiNTM3ZDgxMmQtMDVmNi00ZDdhLThjZmQtNzJkMGU5OGE3NTAwIiwidCI6IjMxY2Y0MGNhLWVkNzItNGE5My05N2Q5LTlkNWIwM2ViY2U3MSJ9)
+
+---
+
 ## Dashboard
 
 Built in Power BI Desktop and published to Power BI Service. Four pages:

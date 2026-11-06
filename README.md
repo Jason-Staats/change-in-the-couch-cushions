@@ -4,7 +4,7 @@ A state-level analysis of physical activity trends and per capita healthcare cos
 
 ---
 
-🔗 **Interactive Dashboard:** [View here](https://app.powerbi.com/view?r=eyJrIjoiNTM3ZDgxMmQtMDVmNi00ZDdhLThjZmQtNzJkMGU5OGE3NTAwIiwidCI6IjMxY2Y0MGNhLWVkNzItNGE5My05N2Q5LTlkNWIwM2ViY2U3MSJ9)
+🔗 **Interactive Dashboard:** [View here](https://app.powerbi.com/view?r=eyJrIjoiM2MzNjcyNzYtY2MwNC00ZDdjLWI1MGItYzYxYmMwMWQxZjVlIiwidCI6ImFjZmM5MDhlLTk0YWEtNDVkMi04OWE3LTcwMjg4MmYyMjc4MiJ9&pageName=62f58e62dba9893a6fde)
 
 ---
 
@@ -44,22 +44,23 @@ Star schema in MySQL with two dimension tables and two fact tables.
 ## Pipeline
 
 1. Create MySQL schema and staging tables
-2. Load raw CDC and CMS data into staging tables via `LOAD DATA INFILE`
-3. Insert into fact tables with filtering and casting
-4. Export aggregated query from MySQL as CSV
-5. Run Python K-Means clustering pipeline on aggregated data
-6. Load cluster assignments back into MySQL as `dim_clusters`
-7. Connect to Power BI via ODBC and build dashboard
+2. Reshape the CMS spending data in Python from year columns into rows
+3. Load the CDC source data and the reshaped CMS data into MySQL staging tables using LOAD DATA INFILE
+4. Filter and cast the staged data, then populate the fact tables
+5. Export the state-level spending and activity averages from MySQL as a CSV
+6. Run K-means clustering in Python on the exported averages
+7. Load the cluster assignments into stg_clusters, then populate dim_clusters
+8. Connect Power BI to MySQL via ODBC and build the dashboard
 
 ---
 
 ## Key Findings
 
-- National average per capita healthcare spending rose steadily from ~$7,500 in 2011 to ~$10,500 in 2020
-- Muscle strengthening rates increased over the decade; no leisure activity rates fluctuated without a clear trend
-- Neither activity metric significantly predicts healthcare spending (muscle strengthening: p = 0.455, R² = 0.011; no leisure activity: p = 0.305, R² = 0.021)
-- The two activity metrics are strongly negatively correlated with each other (r = -0.81, p < 0.001), making it virtually impossible to differentiate their individual effects on spending
-- K-Means clustering (k=3) identified three state profiles: Active but Expensive (8 states), National Norm (33 states), and Inactive but Not Expensive (10 states)
+- Average per capita healthcare spending across the 50 states and D.C. rose from about $7,500 in 2011 to $10,500 in 2020, giving each jurisdiction equal weight and using nominal dollars
+- Muscle-strengthening rates increased across the years surveyed. Rates of no leisure-time physical activity fluctuated without a clear trend
+- Neither physical activity measure had a statistically significant association with average per capita healthcare spending in separate state-level regressions (muscle strengthening: p = 0.455, R² = 0.011; no leisure-time activity: p = 0.305, R² = 0.021)
+- The two activity measures were strongly negatively correlated (r = −0.81, p < 0.001). The separate regressions did not estimate each measure’s association with spending while accounting for the other
+- K-means clustering identified three profiles in the saved data: Active but Expensive (14 states and D.C.), National Norm (26 states), and Inactive but Not Expensive (10 states)
 
 ---
 
